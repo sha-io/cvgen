@@ -1,135 +1,87 @@
 {
-<<<<<<< HEAD
-  "$ref": "#/definitions/CVProfileAutoComplete",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "definitions": {
-    "CVProfileAutoComplete": {
-      "additionalProperties": false,
-      "properties": {
-        "$schema": {
-          "type": "string"
-        },
-        "certifications": {
-          "items": {
-            "$ref": "#/definitions/Certification"
-          },
-          "type": "array"
-=======
   "$ref": "#/definitions/CVProfile",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "CVProfile": {
       "additionalProperties": false,
       "properties": {
+        "$schema": {
+          "description": "Path to the JSON schema for validation. (e.g., \"./schema.json\")",
+          "examples": [
+            "./schema.json"
+          ],
+          "type": "string"
+        },
         "certifications": {
-          "anyOf": [
-            {
-              "items": {
-                "$ref": "#/definitions/Certification"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
+          "description": "Professional licenses and certifications.",
+          "items": {
+            "$ref": "#/definitions/Certification"
+          },
+          "type": [
+            "array",
+            "null"
           ]
->>>>>>> refactor/ts-migration
         },
         "education": {
+          "description": "Academic background history.",
           "items": {
             "$ref": "#/definitions/Education"
           },
-<<<<<<< HEAD
-          "type": "array"
-        },
-        "experiences": {
-          "items": {
-            "$ref": "#/definitions/Experience"
-          },
-          "type": "array"
-        },
-        "languages": {
-          "items": {
-            "$ref": "#/definitions/Language"
-          },
-          "type": "array"
-=======
           "minItems": 1,
           "type": "array"
         },
         "experiences": {
-          "anyOf": [
-            {
-              "items": {
-                "$ref": "#/definitions/Experience"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
+          "description": "Professional work history.",
+          "items": {
+            "$ref": "#/definitions/Experience"
+          },
+          "type": [
+            "array",
+            "null"
           ]
         },
         "languages": {
-          "anyOf": [
-            {
-              "items": {
-                "$ref": "#/definitions/Language"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
+          "description": "Spoken and written languages.",
+          "items": {
+            "$ref": "#/definitions/Language"
+          },
+          "type": [
+            "array",
+            "null"
           ]
->>>>>>> refactor/ts-migration
         },
         "profile": {
-          "$ref": "#/definitions/ProfileDetails"
+          "$ref": "#/definitions/ProfileDetails",
+          "description": "Personal and contact information."
         },
         "projects": {
-<<<<<<< HEAD
+          "description": "Independent or open-source work.",
           "items": {
             "$ref": "#/definitions/Project"
           },
-          "type": "array"
-=======
-          "anyOf": [
-            {
-              "items": {
-                "$ref": "#/definitions/Project"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
+          "type": [
+            "array",
+            "null"
           ]
->>>>>>> refactor/ts-migration
         },
         "skills": {
-          "$ref": "#/definitions/Skills"
+          "$ref": "#/definitions/Skills",
+          "description": "Technical and soft skills."
         },
         "summary": {
-<<<<<<< HEAD
-=======
+          "description": "Professional summary or objective statement. (e.g., \"Motivated engineer...\")",
+          "examples": [
+            "Motivated engineer with a focus on high-performance web systems."
+          ],
           "minLength": 1,
->>>>>>> refactor/ts-migration
           "type": "string"
         }
       },
       "required": [
-<<<<<<< HEAD
-        "education",
-        "profile",
-        "skills",
-        "summary"
-=======
         "profile",
         "summary",
         "education",
         "skills"
->>>>>>> refactor/ts-migration
       ],
       "type": "object"
     },
@@ -137,42 +89,38 @@
       "additionalProperties": false,
       "properties": {
         "date": {
-<<<<<<< HEAD
+          "description": "Date the certificate was earned. (e.g., \"2022-05-15\")",
+          "examples": [
+            "2022-05-15"
+          ],
+          "pattern": "^(\\d{4}-\\d{2}-\\d{2}|(0[1-9]|1[0-2])\\/(19|20)\\d{2})$",
           "type": "string"
         },
         "expiry_date": {
+          "description": "Date the certificate expires. (e.g., \"2025-05-15\")",
+          "examples": [
+            "2025-05-15"
+          ],
+          "pattern": "^(\\d{4}-\\d{2}-\\d{2}|(0[1-9]|1[0-2])\\/(19|20)\\d{2})$",
           "type": [
             "string",
             "null"
           ]
         },
         "issuer": {
-          "type": "string"
-        },
-        "name": {
-=======
-          "pattern": "^(\\d{4}-\\d{2}-\\d{2}|(0[1-9]|1[0-2])\\/(19|20)\\d{2})$",
-          "type": "string"
-        },
-        "expiry_date": {
-          "anyOf": [
-            {
-              "pattern": "^(\\d{4}-\\d{2}-\\d{2}|(0[1-9]|1[0-2])\\/(19|20)\\d{2})$",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
+          "description": "Organization that issued the certificate. (e.g., \"Amazon Web Services\")",
+          "examples": [
+            "Amazon Web Services"
           ],
-          "pattern": "^(\\d{4}-\\d{2}-\\d{2}|(0[1-9]|1[0-2])\\/(19|20)\\d{2})$"
-        },
-        "issuer": {
           "minLength": 1,
           "type": "string"
         },
         "name": {
+          "description": "Official name of the certification. (e.g., \"AWS Certified Solutions Architect\")",
+          "examples": [
+            "AWS Certified Solutions Architect"
+          ],
           "minLength": 1,
->>>>>>> refactor/ts-migration
           "type": "string"
         }
       },
@@ -186,42 +134,86 @@
     "Education": {
       "additionalProperties": false,
       "properties": {
+        "achievements": {
+          "description": "Academic honors or activities. (e.g., [\"Dean's List 2017\"])",
+          "examples": [
+            [
+              "Dean's List 2017",
+              "Hackathon Winner"
+            ]
+          ],
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": [
+            "array",
+            "null"
+          ]
+        },
         "degree": {
-<<<<<<< HEAD
-          "type": "string"
-        },
-        "end_date": {
-          "type": "string"
-        },
-        "field_of_study": {
-          "type": "string"
-        },
-        "gpa": {
-          "type": "string"
-        },
-        "institution": {
-=======
+          "description": "Degree or qualification obtained. (e.g., \"Bachelor of Science\")",
+          "examples": [
+            "Bachelor of Science"
+          ],
           "minLength": 1,
           "type": "string"
         },
         "end_date": {
+          "description": "Graduation date. (e.g., \"2018-06-01\")",
+          "examples": [
+            "2018-06-01"
+          ],
           "pattern": "^(\\d{4}-\\d{2}-\\d{2}|(0[1-9]|1[0-2])\\/(19|20)\\d{2})$",
           "type": "string"
         },
         "field_of_study": {
+          "description": "Specific area of study. (e.g., \"Computer Science\")",
+          "examples": [
+            "Computer Science"
+          ],
           "minLength": 1,
           "type": "string"
         },
         "gpa": {
+          "description": "Grade Point Average. (e.g., \"3.8/4.0\")",
+          "examples": [
+            "3.8/4.0"
+          ],
           "type": [
             "string",
             "null"
           ]
         },
         "institution": {
+          "description": "Name of the school or university. (e.g., \"University of Technology\")",
+          "examples": [
+            "University of Technology"
+          ],
           "minLength": 1,
->>>>>>> refactor/ts-migration
           "type": "string"
+        },
+        "location": {
+          "description": "Campus or city of the institution. (e.g., \"New York, USA\")",
+          "examples": [
+            "New York, USA"
+          ],
+          "minLength": 1,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "start_date": {
+          "description": "Enrollment start date. (e.g., \"2014-09-01\")",
+          "examples": [
+            "2014-09-01"
+          ],
+          "pattern": "^(\\d{4}-\\d{2}-\\d{2}|(0[1-9]|1[0-2])\\/(19|20)\\d{2})$",
+          "type": [
+            "string",
+            "null"
+          ]
         }
       },
       "required": [
@@ -236,59 +228,57 @@
       "additionalProperties": false,
       "properties": {
         "achievements": {
-<<<<<<< HEAD
+          "description": "List of key contributions. (e.g., [\"Reduced load times by 40%\"])",
+          "examples": [
+            [
+              "Reduced load times by 40%",
+              "Led a team of 3 developers"
+            ]
+          ],
           "items": {
             "type": "string"
           },
-          "type": "array"
+          "minItems": 1,
+          "type": [
+            "array",
+            "null"
+          ]
         },
         "company": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "end_date": {
-=======
-          "anyOf": [
-            {
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
+          "description": "Name of the organization. (e.g., \"Tech Solutions Inc.\")",
+          "examples": [
+            "Tech Solutions Inc."
           ],
-          "minItems": 1
-        },
-        "company": {
           "minLength": 1,
           "type": "string"
         },
         "description": {
+          "description": "Overview of roles and responsibilities. (e.g., \"Developed scalable web applications...\")",
+          "examples": [
+            "Developed and maintained scalable web applications using React."
+          ],
           "minLength": 1,
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "end_date": {
-          "description": "*",
+          "description": "Employment end date or 'Present'. (e.g., \"Present\")",
+          "examples": [
+            "Present"
+          ],
           "pattern": "^(\\d{4}-\\d{2}-\\d{2}|(0[1-9]|1[0-2])/(19|20)\\d{2}|[Pp][Rr][Ee][Ss][Ee][Nn][Tt])$",
->>>>>>> refactor/ts-migration
           "type": [
             "string",
             "null"
           ]
         },
         "location": {
-<<<<<<< HEAD
-          "type": "string"
-        },
-        "position": {
-          "type": "string"
-        },
-        "start_date": {
-=======
+          "description": "Work location (e.g., \"Remote\" or \"City, State\").",
+          "examples": [
+            "Remote"
+          ],
           "minLength": 1,
           "type": [
             "string",
@@ -296,27 +286,26 @@
           ]
         },
         "position": {
+          "description": "Job title held at the organization. (e.g., \"Frontend Developer\")",
+          "examples": [
+            "Frontend Developer"
+          ],
           "minLength": 1,
           "type": "string"
         },
         "start_date": {
+          "description": "Employment start date. (e.g., \"2020-01-01\")",
+          "examples": [
+            "2020-01-01"
+          ],
           "pattern": "^(\\d{4}-\\d{2}-\\d{2}|(0[1-9]|1[0-2])\\/(19|20)\\d{2})$",
->>>>>>> refactor/ts-migration
           "type": "string"
         }
       },
       "required": [
         "company",
         "position",
-<<<<<<< HEAD
-        "location",
-        "start_date",
-        "description",
-        "achievements"
-=======
-        "start_date",
-        "description"
->>>>>>> refactor/ts-migration
+        "start_date"
       ],
       "type": "object"
     },
@@ -324,10 +313,18 @@
       "additionalProperties": false,
       "properties": {
         "language": {
+          "description": "Name of the language. (e.g., \"English\")",
+          "examples": [
+            "English"
+          ],
           "type": "string"
         },
         "proficiency": {
-          "$ref": "#/definitions/LanguageProficiency"
+          "$ref": "#/definitions/LanguageProficiency",
+          "description": "Level of mastery. (e.g., \"Native\")",
+          "examples": [
+            "Native"
+          ]
         }
       },
       "required": [
@@ -349,30 +346,18 @@
       "additionalProperties": false,
       "properties": {
         "email": {
-<<<<<<< HEAD
-          "type": "string"
-        },
-        "github": {
-          "type": "string"
-        },
-        "linkedin": {
-          "type": "string"
-        },
-        "location": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "phone": {
-          "type": "string"
-        },
-        "position": {
-=======
+          "description": "Primary contact email address. (e.g., \"john.doe@example.com\")",
+          "examples": [
+            "john.doe@example.com"
+          ],
           "format": "email",
           "type": "string"
         },
         "github": {
+          "description": "URL to GitHub profile. (e.g., \"https://github.com/johndoe\")",
+          "examples": [
+            "https://github.com/johndoe"
+          ],
           "format": "uri",
           "type": [
             "string",
@@ -380,6 +365,10 @@
           ]
         },
         "linkedin": {
+          "description": "URL to LinkedIn profile. (e.g., \"https://linkedin.com/in/johndoe\")",
+          "examples": [
+            "https://linkedin.com/in/johndoe"
+          ],
           "format": "uri",
           "type": [
             "string",
@@ -387,40 +376,59 @@
           ]
         },
         "location": {
+          "description": "Current geographic location. (e.g., \"London, UK\")",
+          "examples": [
+            "London, UK"
+          ],
           "type": [
             "string",
             "null"
           ]
         },
         "name": {
+          "description": "Full legal name. (e.g., \"John Doe\")",
+          "examples": [
+            "John Doe"
+          ],
           "minLength": 1,
           "type": "string"
         },
         "phone": {
+          "description": "Contact phone number. (e.g., \"+1-234-567-890\")",
+          "examples": [
+            "+1-234-567-890"
+          ],
           "minLength": 1,
           "type": "string"
         },
         "position": {
+          "description": "Current professional title. (e.g., \"Software Engineer\")",
+          "examples": [
+            "Software Engineer"
+          ],
           "minLength": 1,
->>>>>>> refactor/ts-migration
           "type": "string"
         },
         "seniority_level": {
+          "description": "Professional seniority level. (e.g., \"Senior\")",
+          "examples": [
+            "Senior"
+          ],
           "type": [
             "string",
             "null"
           ]
         },
         "website": {
-<<<<<<< HEAD
-          "type": "string"
-=======
+          "description": "URL to personal portfolio or website. (e.g., \"https://johndoe.com\")",
+          "examples": [
+            "https://johndoe.com"
+          ],
           "format": "uri",
           "type": [
             "string",
             "null"
           ]
->>>>>>> refactor/ts-migration
         }
       },
       "required": [
@@ -435,21 +443,18 @@
       "additionalProperties": false,
       "properties": {
         "description": {
-<<<<<<< HEAD
-          "type": "string"
-        },
-        "github_url": {
-          "type": "string"
-        },
-        "live_url": {
-          "type": "string"
-        },
-        "name": {
-=======
+          "description": "High-level summary of the project. (e.g., \"A full-stack online store...\")",
+          "examples": [
+            "A full-stack online store built with Next.js and Stripe."
+          ],
           "minLength": 1,
           "type": "string"
         },
         "github_url": {
+          "description": "Link to source code. (e.g., \"https://github.com/user/repo\")",
+          "examples": [
+            "https://github.com/johndoe/shop"
+          ],
           "format": "uri",
           "type": [
             "string",
@@ -457,6 +462,10 @@
           ]
         },
         "live_url": {
+          "description": "Link to live application. (e.g., \"https://demo.com\")",
+          "examples": [
+            "https://shop-demo.com"
+          ],
           "format": "uri",
           "type": [
             "string",
@@ -464,18 +473,26 @@
           ]
         },
         "name": {
+          "description": "Title of the project. (e.g., \"E-commerce Platform\")",
+          "examples": [
+            "E-commerce Platform"
+          ],
           "minLength": 1,
->>>>>>> refactor/ts-migration
           "type": "string"
         },
         "technologies": {
+          "description": "Programming languages and tools used. (e.g., [\"React\", \"Node.js\"])",
+          "examples": [
+            [
+              "React",
+              "Node.js",
+              "PostgreSQL"
+            ]
+          ],
           "items": {
             "type": "string"
           },
-<<<<<<< HEAD
-=======
           "minItems": 1,
->>>>>>> refactor/ts-migration
           "type": "array"
         }
       },
@@ -488,6 +505,19 @@
     },
     "Skills": {
       "additionalProperties": {
+        "description": "Categorized list of skills. (e.g., {\"Languages\": [\"TypeScript\"]})",
+        "examples": [
+          {
+            "Languages": [
+              "TypeScript",
+              "Python"
+            ],
+            "Tools": [
+              "Git",
+              "Docker"
+            ]
+          }
+        ],
         "items": {
           "type": "string"
         },
