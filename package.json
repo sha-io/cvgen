@@ -7,8 +7,6 @@
     "scripts": {
         "build": "tsc && npm run generate:schema-build",
         "check:type": "tsc --noEmit",
-        "generate:schema-dev": "ts-json-schema-generator --path 'src/validation/schema.types.ts' --type CVProfileAutoComplete --out src/validation/cv-schema.json",
-        "generate:schema-build": "ts-json-schema-generator --path 'src/validation/schema.types.ts' --type CVProfileAutoComplete --out dist/validation/cv-schema.json",
         "start": "node dist/index.js",
         "generate:schema-dev": "ts-json-schema-generator --path 'src/validation/schema.types.ts' --type CVProfile --out src/validation/cv-schema.json --no-type-check",
         "generate:schema-build": "ts-json-schema-generator --path 'src/validation/schema.types.ts' --type CVProfile --out dist/validation/cv-schema.json --no-type-check",

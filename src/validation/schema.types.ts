@@ -125,7 +125,3 @@ export interface CVProfile {
     /** @type array @nullable */
     languages?: Language[];
 }
-
-export interface CVProfileAutoComplete extends CVProfile {
-    $schema?: string;
-}
