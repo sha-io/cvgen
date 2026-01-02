@@ -8,7 +8,7 @@ import { schema as ValidationSchema } from './validation/schema.js';
 import type { CVProfile } from './validation/schema.types.js';
 import type { ValidateFunction, JSONSchemaType } from "ajv";
 
-interface options {
+export interface options {
     template: string
     input: string
     output: string

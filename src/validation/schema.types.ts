@@ -69,3 +69,7 @@ export interface CVProfile {
     certifications?: Certification[];
     languages?: Language[];
 }
+
+export interface CVProfileAutoComplete extends CVProfile {
+    $schema?: string;
+}

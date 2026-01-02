@@ -1,0 +1,259 @@
+{
+  "$ref": "#/definitions/CVProfileAutoComplete",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "CVProfileAutoComplete": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "certifications": {
+          "items": {
+            "$ref": "#/definitions/Certification"
+          },
+          "type": "array"
+        },
+        "education": {
+          "items": {
+            "$ref": "#/definitions/Education"
+          },
+          "type": "array"
+        },
+        "experiences": {
+          "items": {
+            "$ref": "#/definitions/Experience"
+          },
+          "type": "array"
+        },
+        "languages": {
+          "items": {
+            "$ref": "#/definitions/Language"
+          },
+          "type": "array"
+        },
+        "profile": {
+          "$ref": "#/definitions/ProfileDetails"
+        },
+        "projects": {
+          "items": {
+            "$ref": "#/definitions/Project"
+          },
+          "type": "array"
+        },
+        "skills": {
+          "$ref": "#/definitions/Skills"
+        },
+        "summary": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "education",
+        "profile",
+        "skills",
+        "summary"
+      ],
+      "type": "object"
+    },
+    "Certification": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "expiry_date": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "issuer",
+        "date"
+      ],
+      "type": "object"
+    },
+    "Education": {
+      "additionalProperties": false,
+      "properties": {
+        "degree": {
+          "type": "string"
+        },
+        "end_date": {
+          "type": "string"
+        },
+        "field_of_study": {
+          "type": "string"
+        },
+        "gpa": {
+          "type": "string"
+        },
+        "institution": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "institution",
+        "degree",
+        "field_of_study",
+        "end_date"
+      ],
+      "type": "object"
+    },
+    "Experience": {
+      "additionalProperties": false,
+      "properties": {
+        "achievements": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "company": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "end_date": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "location": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "company",
+        "position",
+        "location",
+        "start_date",
+        "description",
+        "achievements"
+      ],
+      "type": "object"
+    },
+    "Language": {
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "type": "string"
+        },
+        "proficiency": {
+          "$ref": "#/definitions/LanguageProficiency"
+        }
+      },
+      "required": [
+        "language",
+        "proficiency"
+      ],
+      "type": "object"
+    },
+    "LanguageProficiency": {
+      "enum": [
+        "Native",
+        "Fluent",
+        "Intermediate",
+        "Basic"
+      ],
+      "type": "string"
+    },
+    "ProfileDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "github": {
+          "type": "string"
+        },
+        "linkedin": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "seniority_level": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "website": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "position",
+        "email",
+        "phone"
+      ],
+      "type": "object"
+    },
+    "Project": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "github_url": {
+          "type": "string"
+        },
+        "live_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "technologies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "technologies"
+      ],
+      "type": "object"
+    },
+    "Skills": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "type": "object"
+    }
+  }
+}
